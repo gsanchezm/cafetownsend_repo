@@ -1,0 +1,20 @@
+{
+"Data" :{
+	  "URL" : "http://cafetownsend-angular-rails.herokuapp.com",
+	  "Greeting" : "Hello Luke"
+	  },
+"UserCreds" : {
+		"Username" : "Luke",
+		"Password" : "Skywalker"
+	  },
+"CreateUser" : {
+		"First_Name" : "Donald",
+		"Last_Name" : "Duck",
+		"Start_Date" : "2019-10-12",
+		"Email" : "donald@duck.com"
+		},
+"EditUser" : {
+		"Edit_First_Name" : "Cuack"
+		}
+}
+

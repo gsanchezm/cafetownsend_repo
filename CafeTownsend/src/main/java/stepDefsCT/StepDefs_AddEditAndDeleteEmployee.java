@@ -38,9 +38,9 @@ public class StepDefs_AddEditAndDeleteEmployee {
 	@Then("^User edits employee$")
 	public void user_edits_employee() throws Throwable {
 		Assert.assertTrue(employeePage.selectEmployee(), "- Employee was not selected");
-	    Assert.assertTrue(employeePage.clickEditBtn());
-	    Assert.assertTrue(editPage.editFirstName());
-	    Assert.assertTrue(editPage.clickUpdateBtn());
+	    Assert.assertTrue(employeePage.clickEditBtn(), "- Edit button was not clicked");
+	    Assert.assertTrue(editPage.editFirstName(), "- First name was not edited");
+	    Assert.assertTrue(editPage.clickUpdateBtn(), "- Update button was not clicked");
 	    Thread.sleep(2000);
 	}
 	

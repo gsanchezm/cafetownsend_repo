@@ -50,7 +50,7 @@ public class StepDefs_Login {
 	public void user_logout() throws Throwable {
 		Thread.sleep(1000);
 	    Assert.assertTrue(employeesPage.clickLogoutBtn(), "- Logout button was not clicked");
-	    Assert.assertTrue(loginPage.verifUserTextBoxDisplayed());
+	    Assert.assertTrue(loginPage.verifUserTextBoxDisplayed(), "- Username text box is not displayed");
 	    Thread.sleep(2000);
 	}
 

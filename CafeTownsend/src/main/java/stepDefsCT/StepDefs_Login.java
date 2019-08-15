@@ -36,13 +36,14 @@ public class StepDefs_Login {
 		Assert.assertTrue(loginPage.enterUsername(), "- Username was not entered");
 		Assert.assertTrue(loginPage.enterPassword(), "- Password was not entered");
 		Assert.assertTrue(loginPage.clickLoginBtn(), "- Login button was not clicked");
-		
+		Thread.sleep(2000);
 	}
 	
 	@Then("^user validates correct login$")
 	public void user_validates_correct_login() throws Throwable {
 		String actualGreeting = data.getGreeting();
 		Assert.assertTrue(employeesPage.getGreeting().contentEquals(actualGreeting), "- Greeting message is missing ");
+		Thread.sleep(2000);
 	}
 	
 	@Then("^User logout$")
@@ -50,6 +51,7 @@ public class StepDefs_Login {
 		Thread.sleep(1000);
 	    Assert.assertTrue(employeesPage.clickLogoutBtn(), "- Logout button was not clicked");
 	    Assert.assertTrue(loginPage.verifUserTextBoxDisplayed());
+	    Thread.sleep(2000);
 	}
 
 }

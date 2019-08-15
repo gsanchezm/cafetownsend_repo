@@ -32,7 +32,7 @@ public class StepDefs_AddEditAndDeleteEmployee {
 		Assert.assertTrue(createPage.enterEmail(), "- Email was not entered");
 		Assert.assertTrue(createPage.clickAddBtn(), "- Add button was not clicked");
 		Assert.assertTrue(employeePage.verifyEmployee(), "Employee is not displayed");
-		
+		Thread.sleep(2000);
 	}
 	
 	@Then("^User edits employee$")
@@ -41,6 +41,7 @@ public class StepDefs_AddEditAndDeleteEmployee {
 	    Assert.assertTrue(employeePage.clickEditBtn());
 	    Assert.assertTrue(editPage.editFirstName());
 	    Assert.assertTrue(editPage.clickUpdateBtn());
+	    Thread.sleep(2000);
 	}
 	
 	@Then("^User deletes previously added employee$")
@@ -48,6 +49,7 @@ public class StepDefs_AddEditAndDeleteEmployee {
 		Assert.assertTrue(editPage.selectEditedEmployee(), "Edited employee was not selected");
 		Assert.assertTrue(employeePage.clickDeleteBtn(), "- Delete button was not clicked");
 		Assert.assertTrue(employeePage.acceptAlert(), "- Alert was not accepted");
+		Thread.sleep(2000);
 	}
 
 	

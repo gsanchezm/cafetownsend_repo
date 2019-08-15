@@ -34,8 +34,9 @@ In this section the overall thought process will be described:
 
 - **Framework design**
     - The way the framework is design is by having 4 packages that I will describe
-	-pageObjects:
-	Each class focuses in one page of our application at a time, as we can see we have a class for the login page, another one for the employees page and so on, the purpose to have our classes this way is we can store the web elements and then write our methods to manipulate those web elements just once and then re-use them.
+
+    - **pageObjects:**
+Each class focuses in one page of our application at a time, as we can see we have a class for the login page, another one for the employees page and so on, the purpose to have our classes this way is we can store the web elements and then write our methods to manipulate those web elements just once and then re-use them.
 As you can see I also created a BasePage class in which I have the most common actions to manipulate web elements and that class is inherited by all others pageObject classes
 
     - **StepDefs:**

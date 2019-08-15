@@ -22,8 +22,7 @@ public class StepDefs_Login {
 		driver = ServiceHooks.driver;
 		data = new Data();
 		loginPage = new Login_Page(driver);
-		employeesPage = new Employees_Page(driver);
-		
+		employeesPage = new Employees_Page(driver);	
 	}
 	
 	

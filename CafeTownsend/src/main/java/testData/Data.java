@@ -7,8 +7,8 @@ import org.json.simple.parser.JSONParser;
 
 public class Data {
 
-	String dataPath = "/Users/hector.villa/eclipse-workspace/CafeTownsendData.json";
-
+	String dataPath = "./CafeTownsendData.json";
+	
 	public String getUrl() {
 
 		try {

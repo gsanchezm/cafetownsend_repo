@@ -1,15 +1,19 @@
 package pageObjects;
 
+import java.util.ArrayList;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import stepDefsCT.ServiceHooks;
 
 public class BasePage {
 
-	WebDriver driver = ServiceHooks.driver;
+	WebDriver driver;
 
 	public BasePage() {
 		driver = ServiceHooks.driver;
+
 	}
 
 	public void clickOnElement(WebElement anElement) {
@@ -24,6 +28,18 @@ public class BasePage {
 		while (timeInMiliSecs > 0) {
 			try {
 				return anElement.isDisplayed();
+			} catch (Exception e) {
+				mySleep(500);
+				timeInMiliSecs = -500;
+			}
+		}
+		return false;
+	}
+
+	public boolean waitForElements(ArrayList<WebElement> anElement, long timeInMiliSecs) {
+		while (timeInMiliSecs > 0) {
+			try {
+				return ((WebElement) anElement).isDisplayed();
 			} catch (Exception e) {
 				mySleep(500);
 				timeInMiliSecs = -500;

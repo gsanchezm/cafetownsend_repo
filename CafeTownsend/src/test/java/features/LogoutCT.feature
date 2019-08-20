@@ -1,10 +1,13 @@
 
 Feature: Logout 
   
-  Scenario: Logout as User
-    Given User navigates to CafeTownsend page
-    When User enter Valid credentials
-    And user validates correct login
+  Scenario Outline: Logout as User
+    Given User navigates to "CafeTownsend" page
+    When User enter <email> and <password> 
+    Then user validates correct login with <greeting> message
     Then User logout 
     
     
+Examples:
+|email	|password	  | greeting   |
+|Luke	  |Skywalker	| Hello Luke |

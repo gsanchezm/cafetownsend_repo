@@ -12,12 +12,10 @@ public class Employees_Page extends BasePage {
 
 	WebDriver driver;
 	WebDriverWait wait;
-
+	Edit_Page editPage;
+	Login_Page loginPage;
 
 	// ------- ELEMENTS -------
-	
-	@FindBy(xpath = "//div[@ng-controller='MainController']")
-	WebElement mainController;
 
 	@FindBy(xpath = "//p[@id='greetings']")
 	WebElement txaGreeting;
@@ -46,6 +44,8 @@ public class Employees_Page extends BasePage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		wait = new WebDriverWait(driver, 10);
+		editPage = new Edit_Page(driver);
+		loginPage = new Login_Page(driver);
 	}
 
 	public String getGreeting() {
@@ -56,17 +56,6 @@ public class Employees_Page extends BasePage {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public boolean clickLogoutBtn() {
-		try {
-			waitForElement(bntLogout, 3000);
-			clickOnElement(bntLogout);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
 	}
 
 	public boolean clickCreateBtn() {
@@ -80,52 +69,46 @@ public class Employees_Page extends BasePage {
 		return false;
 	}
 
-	public boolean clickEditBtn() {
-		try {
-			waitForElement(btnEdit, 3000);
-			clickOnElement(btnEdit);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	public boolean clickDeleteBtn() {
-		try {
-			waitForElement(btnDelete, 3000);
-			clickOnElement(btnDelete);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
-	public boolean selectEmployee() {
+	public boolean editEmployee(String newFirstName) {
 		try {
 			waitForElement(lstEmployees, 3000);
 			waitForElement(userDonald, 3000);
 			clickOnElement(userDonald);
+			waitForElement(btnEdit, 3000);
+			clickOnElement(btnEdit);
+			editPage.editFirstName(newFirstName);
 			return true;
-		} catch (Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
+			driver.quit();
 		}
 		return false;
 	}
 	
-	public boolean verifyEmployee() {
-		waitForElement(lstEmployees, 3000);
-		return waitForElement(userDonald, 3000);
-	}
-	
-	public boolean acceptAlert() {
+	public boolean deleteEmployee() {
 		try {
+			editPage.selectEditedEmployee();
+			waitForElement(btnDelete, 3000);
+			clickOnElement(btnDelete);
 			Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 			alert.accept();
 			return true;
-		} catch (Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
+			driver.quit();
+		}
+		return false;
+	}
+	
+	public boolean logout() {
+		try {
+			waitForElement(bntLogout, 3000);
+			clickOnElement(bntLogout);
+			loginPage.verifUserTextBoxDisplayed();
+			return true;
+		}catch (Exception e) {
+			e.printStackTrace();
+			driver.quit();
 		}
 		return false;
 	}

@@ -14,6 +14,7 @@ import cucumber.api.testng.TestNGCucumberRunner;
 public class TestRunner_CafeTownsend {
 	
 	private TestNGCucumberRunner testNGCucumberRunner;
+	
 
 	@BeforeClass(alwaysRun = true)
 	public void setUpClass() throws Exception {
@@ -34,6 +35,7 @@ public class TestRunner_CafeTownsend {
 	@AfterClass(alwaysRun = true)
 	public void tearDownClass() throws Exception {
 		testNGCucumberRunner.finish();
+		
 	}
 
 }

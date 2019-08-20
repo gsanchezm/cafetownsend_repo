@@ -11,47 +11,40 @@ import pageObjects.Login_Page;
 import testData.Data;
 
 public class StepDefs_Login {
-	
+
 	WebDriver driver;
 	Data data;
 	Login_Page loginPage;
 	Employees_Page employeesPage;
-	
-	
+
 	public StepDefs_Login() {
 		driver = ServiceHooks.driver;
 		data = new Data();
 		loginPage = new Login_Page(driver);
-		employeesPage = new Employees_Page(driver);	
+		employeesPage = new Employees_Page(driver);
 	}
 	
-	
-	@Given("^User navigates to CafeTownsend page$")
-	public void user_navigates_to_CafeTownsend_page() throws Throwable {
-	  driver.get(data.getUrl());
+	@Given("^User navigates to \"([^\"]*)\" page$")
+	public void user_navigates_to_page(String arg1) throws Throwable {
+	    arg1 = data.getUrl();
+	    driver.get(arg1);
 	}
 
-	@When("^User enter Valid credentials$")
-	public void user_enter_Valid_credentials() throws Throwable {
-		Assert.assertTrue(loginPage.enterUsername(), "- Username was not entered");
-		Assert.assertTrue(loginPage.enterPassword(), "- Password was not entered");
-		Assert.assertTrue(loginPage.clickLoginBtn(), "- Login button was not clicked");
-		Thread.sleep(2000);
+	@When("^User enter (.+) and (.+)$")
+	public void user_enter_Luke_and_Skywalker(String username, String password) throws Throwable {
+		Assert.assertTrue(loginPage.performLogin(username, password), "- Login does not work");
 	}
-	
-	@Then("^user validates correct login$")
-	public void user_validates_correct_login() throws Throwable {
-		String actualGreeting = data.getGreeting();
-		Assert.assertTrue(employeesPage.getGreeting().contentEquals(actualGreeting), "- Greeting message is missing ");
-		Thread.sleep(2000);
+
+	@Then("^user validates correct login with (.+) message$")
+	public void user_validates_correct_login_with_Hello_Luke_message(String greeting) throws Throwable {
+		Assert.assertTrue(employeesPage.getGreeting().equals(greeting), "- Greeting message is not present");
 	}
-	
+
 	@Then("^User logout$")
 	public void user_logout() throws Throwable {
 		Thread.sleep(1000);
-	    Assert.assertTrue(employeesPage.clickLogoutBtn(), "- Logout button was not clicked");
-	    Assert.assertTrue(loginPage.verifUserTextBoxDisplayed(), "- Username text box is not displayed");
-	    Thread.sleep(2000);
+		Assert.assertTrue(employeesPage.logout(), "- Incorrect logout");
+		Thread.sleep(1000);
 	}
 
 }
